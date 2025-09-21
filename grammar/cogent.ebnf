@@ -1,19 +1,41 @@
+(* Cogent Language Grammar – AI-Native, Semantic-First, Goal-Oriented *)
+
 CogentProgram    = { Module } ;
 
 Module           = "module" Identifier "{" ModuleBody "}" ;
-ModuleBody       = GoalDecl InputsDecl ProcessDecl ;
+
+ModuleBody       = GoalDecl InputsDecl [ ContextDecl ] ProcessDecl [ FeedbackDecl ] ;
 
 GoalDecl         = "goal:" GoalText ;
 GoalText         = StringLiteral ;
 
-InputsDecl       = "inputs:" "[" { InputItem } "]" ;
+InputsDecl       = "inputs:" InputList ;
+InputList        = "[" { InputItem [ "," ] } "]" ;
 InputItem        = Identifier ":" TypeName ;
 
-ProcessDecl      = "process:" "[" { ProcessStep } "]" ;
+ContextDecl      = "context:" ContextBlock ;
+ContextBlock     = StringLiteral ;
+
+ProcessDecl      = "process:" ProcessList ;
+ProcessList      = "[" { ProcessStep [ "," ] } "]" ;
 ProcessStep      = StringLiteral ;
 
-Identifier       = ? letter followed by letters, digits, or underscores ? ;
-TypeName         = Identifier | Identifier "<" TypeName ">" ;
+FeedbackDecl     = "feedback:" FeedbackBlock ;
+FeedbackBlock    = StringLiteral ;
 
-StringLiteral    = '"' { ? any character except " ? } '"' ;
+TypeName         = Identifier [ "<" TypeName ">" ] ;
 
+Identifier       = Letter { Letter | Digit | "_" } ;
+Letter           = "A".."Z" | "a".."z" ;
+Digit            = "0".."9" ;
+
+StringLiteral    = '"' { Character } '"' ;
+Character        = ? any character except " and line breaks ? ;
+
+(* 
+  Notes:
+  - Modules are top-level units stating goals, context, and processes.
+  - Inputs are declared with types for agent interoperability.
+  - Context and feedback blocks are optional to support self-evolving modules and traceable rationale.
+  - Processes are described in high-level semantic steps, not imperative instructions.
+*)
