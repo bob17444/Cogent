@@ -1,0 +1,18 @@
+module DeckingAnalysisTX {
+    goal: "Select optimal composite decking for a residential deck in Texas climate"
+    inputs: [
+        area_sqft: Float,
+        budget_usd: Float,
+        preferred_color: String,
+        warranty_years: Int
+    ]
+    context: "Texas has high UV, variable humidity, and temperature extremes. Durability, fade resistance, and warranty are critical."
+    process: [
+        "Gather available composite decking products for Texas region",
+        "Filter options by area_sqft and budget_usd",
+        "Score products for durability, fade resistance, and warranty_years",
+        "Match preferred_color if possible",
+        "Recommend top 3 products with rationale"
+    ]
+    feedback: "Refine scoring based on user feedback and product availability data."
+}
