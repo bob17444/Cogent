@@ -8,6 +8,7 @@ Cogent was born from the question:
 - **Semantic First:** Most languages are built for human authorship and machine execution. Cogent flips this: it is for agents to communicate, simulate, and evolve goals.
 - **Goal Orientation:** Traditional code focuses on step-by-step procedures. Cogent encourages stating *what* should happen, letting agents figure out *how*.
 - **Self-Evolving Modules:** By integrating agentic feedback and simulation loops, Cogent can refine its own constructs over time.
+- **UI & Data Model Primitives:** The language is being extended to support `page`, `model`, and UI elements for agent-driven application development.
 
 ## Who is Cogent For?
 

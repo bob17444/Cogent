@@ -1,0 +1,17 @@
+module child 0: module type=<class 'lark.lexer.Token'>
+module child 1: Example type=<class 'lark.lexer.Token'>
+module child 2: { type=<class 'lark.lexer.Token'>
+module child 3: Tree(Token('RULE', 'module_body'), [Tree(Token('RULE', 'goal_decl'), [Token('__ANON_0', 'goal:'), Token('STRING', '"Say hello"')]), Tree(Token('RULE', 'inputs_decl'), [Token('__ANON_1', 'inputs:'), Tree(Token('RULE', 'input_list'), [Token('LSQB', '['), Tree(Token('RULE', 'input_item'), [Token('IDENTIFIER', 'user'), Token('COLON', ':'), Tree(Token('RULE', 'type_name'), [Token('IDENTIFIER', 'String')])]), Token('RSQB', ']')])]), Tree(Token('RULE', 'process_decl'), [Token('__ANON_3', 'process:'), Tree(Token('RULE', 'process_list'), [Token('LSQB', '['), Tree(Token('RULE', 'process_step'), [Token('STRING', '"Print \'hello\'"')]), Token('RSQB', ']')])])]) type=<class 'lark.tree.Tree'>
+  module_body child 0: Tree(Token('RULE', 'goal_decl'), [Token('__ANON_0', 'goal:'), Token('STRING', '"Say hello"')]) type=<class 'lark.tree.Tree'>
+goal_decl args: (Token('__ANON_0', 'goal:'), Token('STRING', '"Say hello"'))
+goal_decl result: Say hello
+    transformed: Say hello type=<class 'str'>
+  module_body child 1: Tree(Token('RULE', 'inputs_decl'), [Token('__ANON_1', 'inputs:'), Tree(Token('RULE', 'input_list'), [Token('LSQB', '['), Tree(Token('RULE', 'input_item'), [Token('IDENTIFIER', 'user'), Token('COLON', ':'), Tree(Token('RULE', 'type_name'), [Token('IDENTIFIER', 'String')])]), Token('RSQB', ']')])]) type=<class 'lark.tree.Tree'>
+inputs_decl args: (Token('__ANON_1', 'inputs:'), [Token('LSQB', '['), <interpreter.semantic_model.InputItem object at 0x7ebad4d3a360>, Token('RSQB', ']')])
+inputs_decl result: [<interpreter.semantic_model.InputItem object at 0x7ebad4d3a360>]
+    transformed: [<interpreter.semantic_model.InputItem object at 0x7ebad4d3a360>] type=<class 'list'>
+  module_body child 2: Tree(Token('RULE', 'process_decl'), [Token('__ANON_3', 'process:'), Tree(Token('RULE', 'process_list'), [Token('LSQB', '['), Tree(Token('RULE', 'process_step'), [Token('STRING', '"Print \'hello\'"')]), Token('RSQB', ']')])]) type=<class 'lark.tree.Tree'>
+process_decl args: (Token('__ANON_3', 'process:'), [<interpreter.semantic_model.ProcessStep object at 0x7ebad4d3bf20>, <interpreter.semantic_model.ProcessStep object at 0x7ebad4d3af60>, <interpreter.semantic_model.ProcessStep object at 0x7ebad4d3b800>])
+process_decl result: [<interpreter.semantic_model.ProcessStep object at 0x7ebad4d3bf20>, <interpreter.semantic_model.ProcessStep object at 0x7ebad4d3af60>, <interpreter.semantic_model.ProcessStep object at 0x7ebad4d3b800>]
+    transformed: [<interpreter.semantic_model.ProcessStep object at 0x7ebad4d3bf20>, <interpreter.semantic_model.ProcessStep object at 0x7ebad4d3af60>, <interpreter.semantic_model.ProcessStep object at 0x7ebad4d3b800>] type=<class 'list'>
+module child 4: } type=<class 'lark.lexer.Token'>

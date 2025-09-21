@@ -1,0 +1,46 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.1, pytest-8.4.2, pluggy-1.6.0
+rootdir: /workspaces/Cogent
+plugins: anyio-4.9.0
+collected 1 item
+
+tests/test_module_types.py F                                             [100%]
+
+=================================== FAILURES ===================================
+_________________________ test_module_types_and_enums __________________________
+
+    def test_module_types_and_enums():
+        source = '''
+        module TypesTest {
+            type MyInt = Int
+            type ListOfInt = List<MyInt>
+            enum Color { Red, Green, Blue }
+            goal: "Test types"
+            inputs: [x: MyInt, y: ListOfInt, c: Color]
+            process: ["Do something"]
+        }
+        '''
+        parser = CogentParser(grammar_path="grammar/cogent.ebnf")
+        tree = parser.parse_string(source)
+        model = CogentTransformer().transform(tree)
+        if hasattr(model, 'children') and model.children:
+            model = model.children[0]
+        assert isinstance(model, CogentModule)
+>       assert "MyInt" in model.types
+E       AssertionError: assert 'MyInt' in {'enum': Enum enum {{, Red, ,, Green, ,, Blue}, 'type': Token('EQUAL', '=')}
+E        +  where {'enum': Enum enum {{, Red, ,, Green, ,, Blue}, 'type': Token('EQUAL', '=')} = <CogentModule name=TypesTest goal=Test types imports=[] types=['type', 'enum']>.types
+
+tests/test_module_types.py:21: AssertionError
+----------------------------- Captured stdout call -----------------------------
+[DEBUG] type_decl: name=type, value==
+[DEBUG] type_decl: name=type, value==
+[DEBUG] enum_decl: name=enum, items=['{', 'Red', ',', 'Green', ',', 'Blue']
+[DEBUG] module items: [Token('MODULE', 'module'), Token('IDENTIFIER', 'TypesTest'), Token('LBRACE', '{'), ('type', Token('EQUAL', '=')), ('type', Token('EQUAL', '=')), {'enum': Enum enum {{, Red, ,, Green, ,, Blue}}, ['Test types', [<interpreter.semantic_model.InputItem object at 0x7c7b1d673aa0>, <interpreter.semantic_model.InputItem object at 0x7c7b1cbc9610>, <interpreter.semantic_model.InputItem object at 0x7c7b1cbcb170>], None, [<interpreter.semantic_model.ProcessStep object at 0x7c7b1cbc9a60>], None], Token('RBRACE', '}')]
+[DEBUG] module name: TypesTest
+[DEBUG] module imports: []
+[DEBUG] module types: {'type': Token('EQUAL', '='), 'enum': Enum enum {{, Red, ,, Green, ,, Blue}}
+[DEBUG] module body: ['Test types', [<interpreter.semantic_model.InputItem object at 0x7c7b1d673aa0>, <interpreter.semantic_model.InputItem object at 0x7c7b1cbc9610>, <interpreter.semantic_model.InputItem object at 0x7c7b1cbcb170>], None, [<interpreter.semantic_model.ProcessStep object at 0x7c7b1cbc9a60>], None]
+[DEBUG] module result: name=TypesTest, imports=[], types=['type', 'enum'], goal=Test types
+=========================== short test summary info ============================
+FAILED tests/test_module_types.py::test_module_types_and_enums - AssertionErr...
+============================== 1 failed in 0.08s ===============================
