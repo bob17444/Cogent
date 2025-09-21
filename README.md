@@ -33,3 +33,23 @@ module CompositeDeckingAnalysis {
 ---
 
 See `docs/rationale.md` for the philosophy, and `docs/roadmap.md` for what's next.
+
+---
+
+## Parser & Semantic Model
+
+The Cogent interpreter parses `.cg` files using a formal grammar (`grammar/cogent.ebnf`) and builds a semantic model with explicit fields for goal, inputs, process, context, and feedback. The parser and model are robustly tested (see `tests/`).
+
+### Usage Example
+
+```python
+from interpreter.parser import CogentParser, CogentTransformer
+parser = CogentParser(grammar_path="grammar/cogent.ebnf")
+tree = parser.parse_string(cogent_source)
+model = CogentTransformer().transform(tree)
+```
+
+### Extending the Language
+- Update the grammar in `grammar/cogent.ebnf`
+- Update transformer logic in `interpreter/parser.py`
+- Add/expand tests in `tests/`

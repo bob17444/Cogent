@@ -19,12 +19,18 @@ This directory contains the initial scaffold for the Cogent interpreter, designe
 - `telemetry.py` — (Stub) For logging and feedback loops.
 - `__init__.py` — Python package marker.
 
-## Next Steps
+## Testing
 
-- Implement the parser using `grammar/cogent.ebnf`.
-- Populate and validate the semantic model from parsed data.
-- Build out agent feedback and self-evolution features.
-- Expand resource profiling and telemetry.
+Run all tests with:
+
+```bash
+pytest
+```
+
+Test coverage includes:
+- Minimal and complex modules
+- Optional/required fields
+- Edge cases (empty lists, multiple modules, etc.)
 
 ---
 

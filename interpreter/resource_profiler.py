@@ -1,30 +1,38 @@
+
+
 """
-Agent API
+Resource Profiler
 
-Minimal, transparent API for agents to inspect and interact with Cogent modules.
-Supports clarity, traceability, and future feedback-driven evolution.
+Implements resource profiling for Cogent interpreter: track and report resource usage (CPU, memory, time, etc.) for modules and processes.
 """
 
-class AgentAPI:
-    def __init__(self, semantic_model):
-        self.semantic_model = semantic_model
+import time
+import tracemalloc
 
-    def get_goal(self):
-        """
-        Return the goal of the current Cogent module.
-        """
-        return getattr(self.semantic_model, "goal", None)
+class ParseProfileResult:
+	def __init__(self, elapsed_sec, peak_mem_bytes):
+		self.elapsed_sec = elapsed_sec
+		self.peak_mem_bytes = peak_mem_bytes
+	def __repr__(self):
+		return f"ParseProfileResult(time={self.elapsed_sec:.6f}s, peak_mem={self.peak_mem_bytes/1024:.1f} KB)"
 
-    def get_inputs(self):
-        """
-        Return the declared inputs of the module.
-        """
-        return getattr(self.semantic_model, "inputs", None)
+def profile_parse(parser, source_code):
+	"""
+	Profile the parsing of source_code using the given parser.
+	Returns a ParseProfileResult with elapsed time and peak memory usage.
+	"""
+	tracemalloc.start()
+	start = time.perf_counter()
+	parser.parse_string(source_code)
+	elapsed = time.perf_counter() - start
+	_, peak = tracemalloc.get_traced_memory()
+	tracemalloc.stop()
+	return ParseProfileResult(elapsed, peak)
 
-    def get_process(self):
-        """
-        Return the process steps of the module.
-        """
-        return getattr(self.semantic_model, "process", None)
+# Example usage (for test or CLI):
+# from interpreter.parser import CogentParser
+# parser = CogentParser(grammar_path="grammar/cogent.ebnf")
+# with open("examples/decking_analysis.cg") as f:
+#     code = f.read()
+# print(profile_parse(parser, code))
 
-    # Extendable: methods for feedback, self-evolution, module provenance

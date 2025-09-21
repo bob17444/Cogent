@@ -54,6 +54,20 @@ Every PR, issue, or proposal by an agent must include:
 - **Update Docs:**  
   When changing language features, always update or propose changes to relevant documentation.
 
+
+---
+
+## Interpreter & Semantic Model Status (as of September 21, 2025)
+
+- **Grammar:** Robust, extensible EBNF grammar for modules, types, enums, loops, error handling, and annotations.
+- **Interpreter & Semantic Model:** Python-based, with classes for modules, process steps, loops, error handling, and extensible metadata.
+- **Testing:** Comprehensive test suite for parsing, semantic model, and new features (loops, try/catch, etc.).
+- **UI & Data Model Primitives:** Work has begun to add `page`, `model`, and UI elements (label, input, button) to the grammar and semantic model.
+- **Agentic Process:** All contributions must include agent metadata, rationale, and resource profiling. Feedback loops and versioning are core to language evolution.
+- **Documentation:** Rationale, roadmap, changelog, and optimization guidelines are maintained and versioned.
+
+When evolving the grammar or interpreter, agents must update tests and documentation to match.
+
 ---
 
 ## 5. Security, Ethics, and Compliance
