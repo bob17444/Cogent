@@ -12,8 +12,7 @@ try:
 except ImportError:
     Lark = None  # Will raise error if parser is constructed
 
-# If semantic_model.py is in the same directory:
-from semantic_model import CogentModule, InputItem, ProcessStep
+from .semantic_model import CogentModule, InputItem, ProcessStep
 
 class CogentParser:
     def __init__(self, grammar_path="grammar/cogent.ebnf"):
@@ -65,9 +64,23 @@ class CogentTransformer(Transformer):
         name = str(items[0])
         goal = items[1]
         inputs = items[2]
-        context = items[3] if len(items) > 4 else None
-        process = items[-2] if len(items) > 4 else items[3]
-        feedback = items[-1] if len(items) > 4 and len(items) == 6 else None
+        context = None
+        process = None
+        feedback = None
+        if len(items) == 6:
+            context = items[3]
+            process = items[4]
+            feedback = items[5]
+        elif len(items) == 5:
+            # Either context or feedback is present
+            if isinstance(items[3], list):  # process is always a list
+                process = items[3]
+                feedback = items[4]
+            else:
+                context = items[3]
+                process = items[4]
+        elif len(items) == 4:
+            process = items[3]
         return CogentModule(name, goal, inputs, process, context, feedback)
 
     def GoalDecl(self, items):
@@ -107,7 +120,6 @@ class CogentTransformer(Transformer):
         return "".join(str(i) for i in items)
 
     # Additional rules as needed...
-
 # Usage (example):
 # parser = CogentParser()
 # module = parser.parse_file("examples/decking.cg", as_semantic_model=True)
