@@ -19,4 +19,6 @@ jobs:
       run: |
         pip install pytest lark
     - name: Run tests
-      run: pytest
+  run: |
+    cd Cogent
+    PYTHONPATH=. pytest
