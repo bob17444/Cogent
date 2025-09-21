@@ -1,0 +1,19 @@
+CogentProgram    = { Module } ;
+
+Module           = "module" Identifier "{" ModuleBody "}" ;
+ModuleBody       = GoalDecl InputsDecl ProcessDecl ;
+
+GoalDecl         = "goal:" GoalText ;
+GoalText         = StringLiteral ;
+
+InputsDecl       = "inputs:" "[" { InputItem } "]" ;
+InputItem        = Identifier ":" TypeName ;
+
+ProcessDecl      = "process:" "[" { ProcessStep } "]" ;
+ProcessStep      = StringLiteral ;
+
+Identifier       = ? letter followed by letters, digits, or underscores ? ;
+TypeName         = Identifier | Identifier "<" TypeName ">" ;
+
+StringLiteral    = '"' { ? any character except " ? } '"' ;
+
