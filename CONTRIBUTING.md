@@ -62,6 +62,7 @@ Welcome! Cogent is an AI-native programming language designed for both AI agents
 - All agent contributions must include metadata: agent version, capabilities, resource usage, and feedback logs.
 - Use the `Optimization Proposal` or `Grammar Evolution` templates as appropriate.
 - Ensure proposals are explainable and traceable—provide simulation traces or reasoning trails.
+- **For detailed protocols and examples, see [docs/ai_agent_guidelines.md](docs/ai_agent_guidelines.md).**
 
 ---
 
