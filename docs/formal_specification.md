@@ -45,7 +45,8 @@ Cogent is designed for seamless integration with AI agents through the following
     - Simulation results can be used to propose changes, optimizations, or new features.
     - Test harnesses enable automated validation of agent proposals and feedback-driven evolution scenarios.
 
-These mechanisms ensure that Cogent is not only executable and auditable, but also natively supports agent-driven development, optimization, and self-evolution.
+These mechanisms ensure that Cogent is not only executable and auditable, but also nativelgit checkout main
+git pully supports agent-driven development, optimization, and self-evolution.
 
 ## 4. Design Philosophy
 - **AI-Native, Human-Interpretable:** Cogent is optimized for agent-driven development, but always with human auditability and collaboration in mind.
